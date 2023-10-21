@@ -109,3 +109,86 @@ for n in range(1, 10):
   Tablas_de_multiplicar(n)
 
 ```
+
+## Punto 8
+
+Diseñar una función que permita calcular una aproximación de la función exponencial alrededor de 0 para cualquier valor x (real), utilizando los primeros n términos de la serie de Maclaurin. Nota: use math para traer la función exponencial y mostrar la diferencia entre el valor real y la aproximación.
+
+```
+import math 
+
+def aprox_exp(x, n):
+    aprox = 0.0        
+    for i in range(n):  
+        aprox += x**i / math.factorial(i) 
+    real = math.exp(x)                    
+    error = abs(real - aprox)             
+    error_porcentaje = error / real * 100 # Calcula el porcentaje del error
+
+    print(f"Aproximación: {aprox:.6f}") 
+    print(f"Valor real:   {real:.6f}")    
+    print(f"Diferencia:   {error:.6f}")   
+    
+
+    if error_porcentaje <= 0.1:  
+        print (f"El porcentaje de error es menor a 0.1%: es de {error_porcentaje:} ") 
+    else:
+        print (f"El porcentaje de error es mayor a 0.1%: es de {error_porcentaje:} ")
+
+```
+
+
+
+## Punto 9 
+
+Diseñar una función que permita calcular una aproximación de la función seno alrededor de 0 para cualquier valor x (real), utilizando los primeros n términos de la serie de Maclaurin. Nota: use math para traer la función seno y mostrar la diferencia entre el valor real y la aproximación.
+
+```
+
+import math as M
+def seno(x, n):
+    aprox = 0  
+    for i in range(n):  
+        termino = ((-1) ** i) * (x ** (2 * i + 1)) / math.factorial(2 * i + 1)  
+        aprox += termino  
+    return aprox  
+
+if __name__ == '__main__':
+    x = float(input("Ingresa un valor para x: ")) 
+    n = 1
+    error = 1 
+    while error > 0.001:  # Siempre y cuando el error sea mayor que 0.1
+        senoReal = math.sin(x) 
+        seno_aproximado = seno(x, n) 
+        n += 1  
+    print("Se necesita n = {n} para tener un error menor o igual a 0.1%")
+    print("Aproximación del seno: {seno_aproximado}")
+
+```
+
+
+## Punto 10
+
+Diseñar una función que permita calcular una aproximación de la función arcotangente alrededor de 0 para cualquier valor x en el rango [-1, 1], utilizando los primeros n términos de la serie de Maclaurin. Nota: use math para traer la función arctan y mostrar la diferencia entre el valor real y la aproximación.
+
+```
+import math
+def arctan(x, y):
+    aprox = 0
+    for i in range(n):
+        aprox += ((-1) ** i) * (x ** (2 * i + 1)) / (2 * i + 1)
+    return aprox
+x = float(input("Ingrese un valor de x (debe estar en el rango [-1, 1]): "))
+if x < -1 or x > 1:
+    print("Papi/mami por ahi no es ")
+    
+else:
+    n = int(input("Ingrese el número de términos de la serie de Maclaurin a utilizar: "))
+    aprox = arctan(x, y)
+    valorReal = math.atan(x)
+    Diferencia = valorReal - aprox
+    print("La aproximación de la función arcotangente para x = " +str(x)+ " utilizando los primeros " +str(y)+ " términos de la serie de Maclaurin es: " +str(aprox))
+    print("El valor de la función arcotangente para x = " +str(n)+ " es: " +str(valorReal))
+    print("La diferencia entre la aproximación y el valor real es: " +str(Diferencia))
+
+```
